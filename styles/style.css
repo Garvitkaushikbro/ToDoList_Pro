@@ -1,0 +1,25 @@
+:root {
+  --color-dark: rgb(102, 68, 0);
+  --color-medium: rgb(255, 195, 77);
+  --color-light-1: rgb(255, 221, 153);
+  --color-light-2: rgb(255, 230, 179);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Poppins" sans-serif;
+  font-size: 1.6rem;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
