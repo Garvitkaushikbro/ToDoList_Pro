@@ -19,3 +19,9 @@ nav {
   height: 3rem;
   stroke: var(--color-dark);
 }
+
+/* .navHamburger svg:hover {
+  width: 3rem;
+  height: 3rem;
+  stroke-width: 5;
+} */

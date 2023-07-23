@@ -1,0 +1,32 @@
+.viewBack {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.viewBack h3 {
+  margin: 0;
+  padding-bottom: 5px;
+}
+.viewBack p {
+  margin: 0;
+  padding-bottom: 5px;
+}
+.viewBack .subtask {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#viewBackLogContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+
+  background-color: rgb(231, 222, 206);
+  padding: 6rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}

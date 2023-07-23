@@ -1,4 +1,4 @@
-.modal {
+.modalEdit {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -12,37 +12,9 @@
   z-index: 10;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
-  z-index: 5;
-}
-
-.overlayEdit {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
-  z-index: 5;
-}
-
 label {
   font-size: 2rem;
 }
-
-/* .form_task_subtask_head {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-} */
 
 label {
   display: block;
@@ -59,12 +31,12 @@ select {
   border-radius: 4px;
 }
 
-label[for="form_task_subtask"] {
+label[for="form_task_subtask_edit"] {
   display: flex;
   align-items: center;
 }
 
-.form_task_subtask {
+.form_task_subtask_edit {
   width: 100%;
   padding: 1rem;
   border: 1px solid #ccc;
@@ -72,13 +44,13 @@ label[for="form_task_subtask"] {
   margin-bottom: 1rem;
 }
 
-.form_task_dropdown {
+.form_task_dropdown_edit {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
 }
 
-.form_task_dropdown select {
+.form_task_dropdown_edit select {
   padding: 1rem;
 }
 

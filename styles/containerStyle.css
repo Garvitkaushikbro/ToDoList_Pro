@@ -1,0 +1,62 @@
+.container {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subContainer {
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 1rem;
+  background-color: var(--color-light-2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.operations {
+  width: 100%;
+  padding: 1rem;
+  font-family: ubuntu;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ops {
+  background-color: var(--color-medium);
+  border-radius: 1rem;
+  cursor: pointer;
+
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+}
+
+.ops:hover {
+  background-color: rgb(254, 206, 109);
+}
+
+.ops svg {
+  margin: 0.05rem;
+}
+
+.ops p {
+  margin: 0.05rem;
+}
+
+.options {
+  flex-shrink: 0;
+}
+
+.subContainer ul {
+  width: 100%;
+}

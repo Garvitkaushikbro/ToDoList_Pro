@@ -1,0 +1,28 @@
+Task Table
+
+task_id INT
+task_title STRING
+task_description STRING
+task_priority STRING
+task_due_date dateTime
+task_subtasks STRING[]
+task_category STRING
+isDone Boolean
+
+
+
+Tag Table
+
+tag_id INT
+task_id INT[]
+
+
+
+Activity Log Table
+
+Activity_List Object[]
+
+
+ViewBackLog Table
+
+ViewBackLog_List Object[]

@@ -1,0 +1,16 @@
+.sideBar {
+  height: 100vh;
+  background-color: var(--color-light-2);
+  position: absolute;
+  transition: all 1s ease;
+  transform: translateX(-100%);
+}
+
+.sideBarOption {
+  font-family: ubuntu;
+  font-weight: bold;
+  color: var(--color-dark);
+  padding: 2rem;
+  border-bottom: 0.1rem solid var(--color-dark);
+  cursor: pointer;
+}

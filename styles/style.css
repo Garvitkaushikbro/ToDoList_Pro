@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: "Poppins" sans-serif;
+  font-family: ubuntu sans-serif;
   font-size: 1.6rem;
 }
 
@@ -21,5 +21,34 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+svg {
+  fill: none;
+  width: 2rem;
+  height: 2rem;
+  stroke-width: 1.5;
+  stroke: #555;
+  margin: 0.25rem;
+}
+
+ul {
+  list-style: none;
+}
+
+.blur {
+  text-decoration: line-through;
+}
+
+.rbl {
+  border-left: 1rem solid red;
+}
+
+.gbl {
+  border-left: 1rem solid green;
+}
+
+.obl {
+  border-left: 1rem solid orange;
 }

@@ -1,0 +1,20 @@
+.dateContainer {
+  width: 60%;
+  margin: 1rem auto;
+  border-radius: 1rem;
+  background-color: var(--color-light-2);
+  color: var(--color-dark);
+  font-family: ubuntu;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dateContainer h1 {
+  padding: 1rem 2rem;
+}
+
+.dateContainer h2 {
+  padding: 1rem 2rem;
+}
