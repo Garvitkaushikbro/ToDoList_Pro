@@ -42,33 +42,33 @@ sideBar.addEventListener("click", function (e) {
       descriptionParagraph.textContent = `Description: ${data.description}`;
       activityDiv.appendChild(descriptionParagraph);
 
-      const doneParagraph = document.createElement("p");
-      doneParagraph.textContent = `Done: ${data.done ? "Yes" : "No"}`;
-      activityDiv.appendChild(doneParagraph);
+      // const doneParagraph = document.createElement("p");
+      // doneParagraph.textContent = `Done: ${data.done ? "Yes" : "No"}`;
+      // activityDiv.appendChild(doneParagraph);
 
-      const categoryParagraph = document.createElement("p");
-      categoryParagraph.textContent = `Category: ${data.category}`;
-      activityDiv.appendChild(categoryParagraph);
+      // const categoryParagraph = document.createElement("p");
+      // categoryParagraph.textContent = `Category: ${data.category}`;
+      // activityDiv.appendChild(categoryParagraph);
 
-      const priorityParagraph = document.createElement("p");
-      priorityParagraph.textContent = `Priority: ${data.priority}`;
-      activityDiv.appendChild(priorityParagraph);
+      // const priorityParagraph = document.createElement("p");
+      // priorityParagraph.textContent = `Priority: ${data.priority}`;
+      // activityDiv.appendChild(priorityParagraph);
 
-      if (data.subtask.length > 0) {
-        const subtaskList = document.createElement("ul");
-        subtaskList.textContent = "Subtasks:";
-        subtaskList.classList.add("subtask");
-        data.subtask.forEach((subtask) => {
-          const subtaskItem = document.createElement("li");
-          subtaskItem.textContent = subtask;
-          subtaskList.appendChild(subtaskItem);
-        });
-        activityDiv.appendChild(subtaskList);
-      }
+      // if (data.subtask.length > 0) {
+      //   const subtaskList = document.createElement("ul");
+      //   subtaskList.textContent = "Subtasks:";
+      //   subtaskList.classList.add("subtask");
+      //   data.subtask.forEach((subtask) => {
+      //     const subtaskItem = document.createElement("li");
+      //     subtaskItem.textContent = subtask;
+      //     subtaskList.appendChild(subtaskItem);
+      //   });
+      //   activityDiv.appendChild(subtaskList);
+      // }
 
-      const dueDateParagraph = document.createElement("p");
-      dueDateParagraph.textContent = `Due Date: ${data.dueDate.toLocaleString()}`;
-      activityDiv.appendChild(dueDateParagraph);
+      // const dueDateParagraph = document.createElement("p");
+      // dueDateParagraph.textContent = `Due Date: ${data.dueDate.toLocaleString()}`;
+      // activityDiv.appendChild(dueDateParagraph);
 
       activityLogContainer.appendChild(activityDiv);
     });
