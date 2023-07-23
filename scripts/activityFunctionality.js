@@ -8,8 +8,8 @@ sideBar.addEventListener("click", function (e) {
     overlay.classList.remove("hidden");
     activityLogContainer.classList.remove("hidden");
     overlay.addEventListener("click", function () {
-      overlay.classList.add("hidden");
       activityLogContainer.classList.add("hidden");
+      overlay.classList.add("hidden");
     });
     // Loop through the activityLog array and generate HTML for each entry
     activityLog.forEach((entry) => {

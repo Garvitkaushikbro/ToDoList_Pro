@@ -67,7 +67,6 @@ operations.addEventListener("click", function (e) {
       localStorage.setItem("activityLog", JSON.stringify(activityLog));
       localStorage.setItem("data", JSON.stringify(data));
       localStorage.setItem("id", JSON.stringify(id));
-      // Clear the form after submission (optional)
       task_form.reset();
 
       removeModal();
