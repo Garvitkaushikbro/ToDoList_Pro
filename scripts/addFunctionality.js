@@ -39,7 +39,6 @@ operations.addEventListener("click", function (e) {
       const taskDueDate = task_form.elements.form_task_dueDate.value;
       let dueDate = new Date(taskDueDate);
       dueDate = new Intl.DateTimeFormat("en-uk").format(dueDate);
-
       data.push({
         id: id,
         title: taskTitle,

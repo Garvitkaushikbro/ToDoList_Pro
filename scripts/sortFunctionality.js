@@ -14,7 +14,13 @@ sort.addEventListener("mouseleave", function (e) {
 const sortOptions = document.querySelector(".sortOptions");
 
 function compareByDate1(a, b) {
-  return a.dueDate - b.dueDate;
+  a = a.dueDate;
+  b = b.dueDate;
+  a = new Date(a.dueDate);
+  b = new Date(b.dueDate);
+  a = Number(a);
+  b = Number(b);
+  return a - b;
 }
 
 function compareByDate2(a, b) {
