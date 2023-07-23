@@ -91,8 +91,7 @@ task_form_edit.addEventListener("submit", function (event) {
       if (subtask.length !== 0) {
         for (let st of subtask) data[i].subtask.push(st);
       }
-      let x = new Date(Date.now());
-      x = new Intl.DateTimeFormat("en-us").format(x);
+      const activityLog = [...JSON.parse(localStorage.getItem("activityLog"))];
       activityLog.push({
         action: "edit",
         data: data[i],

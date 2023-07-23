@@ -1,11 +1,19 @@
 const sideBar = document.querySelector(".sideBar");
 const activityLogContainer = document.querySelector("#activityLogContainer");
+const viewBackLogContainer = document.querySelector("#viewBackLogContainer");
 const overlayactivityLog = document.querySelector(".overlayactivityLog");
+const overlayviewBackLog = document.querySelector(".overlayviewBackLog");
 
 overlayactivityLog.addEventListener("click", function () {
   activityLogContainer.innerHTML = "";
   activityLogContainer.classList.add("hidden");
   overlayactivityLog.classList.add("hidden");
+});
+
+overlayviewBackLog.addEventListener("click", function () {
+  viewBackLogContainer.innerHTML = "";
+  overlay.classList.add("hidden");
+  viewBackLogContainer.classList.add("hidden");
 });
 
 sideBar.addEventListener("click", function (e) {
@@ -21,7 +29,8 @@ sideBar.addEventListener("click", function (e) {
       activityDiv.classList.add("activity");
 
       const actionHeader = document.createElement("h3");
-      actionHeader.textContent = `Action: ${entry.action}`;
+      const str = entry.action.toUpperCase();
+      actionHeader.textContent = `${str}`;
       activityDiv.appendChild(actionHeader);
 
       const data = entry.data;
@@ -66,10 +75,6 @@ sideBar.addEventListener("click", function (e) {
   } else if (e.target.classList.contains("viewBackLogs")) {
     overlay.classList.remove("hidden");
     viewBackLogContainer.classList.remove("hidden");
-    overlay.addEventListener("click", function () {
-      overlay.classList.add("hidden");
-      viewBackLogContainer.classList.add("hidden");
-    });
 
     filteredData = [...JSON.parse(localStorage.getItem("data"))];
     filteredData = filteredData.filter((d) => {
