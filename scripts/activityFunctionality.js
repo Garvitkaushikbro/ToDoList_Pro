@@ -1,16 +1,20 @@
 const sideBar = document.querySelector(".sideBar");
 const activityLogContainer = document.querySelector("#activityLogContainer");
+const overlayactivityLog = document.querySelector(".overlayactivityLog");
+
+overlayactivityLog.addEventListener("click", function () {
+  activityLogContainer.innerHTML = "";
+  activityLogContainer.classList.add("hidden");
+  overlayactivityLog.classList.add("hidden");
+});
 
 sideBar.addEventListener("click", function (e) {
   e.preventDefault();
   if (e.target.classList.contains("activityLogs")) {
     const activityLog = [...JSON.parse(localStorage.getItem("activityLog"))];
-    overlay.classList.remove("hidden");
+    overlayactivityLog.classList.remove("hidden");
     activityLogContainer.classList.remove("hidden");
-    overlay.addEventListener("click", function () {
-      activityLogContainer.classList.add("hidden");
-      overlay.classList.add("hidden");
-    });
+
     // Loop through the activityLog array and generate HTML for each entry
     activityLog.forEach((entry) => {
       const activityDiv = document.createElement("div");
