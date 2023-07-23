@@ -26,15 +26,13 @@ function render(data, filterFunction) {
     let li = document.createElement("li");
     li.classList.add(d.id);
     li.classList.add("task_and_option");
-    let x = new Date(d.dueDate);
-    const date = new Intl.DateTimeFormat("en-uk").format(x);
     let taskString = `<div class="task ${d.done ? "blur" : ""} 
     ${d.priority === "high" ? "rbl" : ""} 
     ${d.priority === "low" ? "gbl" : ""}
     ${d.priority === "medium" ? "obl" : ""} ">
       <div class="task_header">
         <div class="task_title">${d.title}</div>
-        <div class="task_dueDate">Due date: ${date}</div>
+        <div class="task_dueDate">Due date: ${d.dueDate}</div>
       </div>
       <div class="task_description ${d.done ? "hidden" : ""}">${
       d.description

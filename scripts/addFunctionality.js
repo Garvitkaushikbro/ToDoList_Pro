@@ -37,8 +37,9 @@ operations.addEventListener("click", function (e) {
       const taskPriority = task_form.elements.form_task_priority.value;
       const taskTag = task_form.elements.form_task_tag.value;
       const taskDueDate = task_form.elements.form_task_dueDate.value;
+      let dueDate = new Date(taskDueDate);
+      dueDate = new Intl.DateTimeFormat("en-uk").format(dueDate);
 
-      // Perform any desired operations with the form data
       data.push({
         id: id,
         title: taskTitle,
@@ -46,7 +47,7 @@ operations.addEventListener("click", function (e) {
         subtask: subtask,
         category: taskCategory,
         priority: taskPriority,
-        dueDate: new Date(taskDueDate),
+        dueDate: dueDate,
         done: false,
       });
       id++;

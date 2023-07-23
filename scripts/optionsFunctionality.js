@@ -10,18 +10,19 @@ const removeModalEdit = function () {
 listTask.addEventListener("click", function (e) {
   if (e.target.classList.contains("remove")) {
     const [id] = e.target.closest("li").classList;
+    const activityLog = [...JSON.parse(localStorage.getItem("activityLog"))];
     let data = [...JSON.parse(localStorage.getItem("data"))];
     for (let i = 0; i < data.length; i++) {
       if (data[i].id === Number(id)) {
-        data.splice(i, i + 1);
         activityLog.push({
           action: "delete",
           data: data[i],
         });
-        localStorage.setItem("activityLog", JSON.stringify(activityLog));
+        data.splice(i, i + 1);
         break;
       }
     }
+    localStorage.setItem("activityLog", JSON.stringify(activityLog));
     localStorage.setItem("data", JSON.stringify(data));
     render(data, showAll);
   } else if (e.target.classList.contains("edit")) {
@@ -77,6 +78,11 @@ task_form_edit.addEventListener("submit", function (event) {
   const taskPriority = task_form_edit.elements.form_task_priority_edit.value;
   const taskTag = task_form_edit.elements.form_task_tag_edit.value;
   const taskDueDate = task_form_edit.elements.form_task_dueDate_edit.value;
+  let dueDate;
+  if (taskDueDate) {
+    dueDate = new Date(taskDueDate);
+    dueDate = new Intl.DateTimeFormat("en-uk").format(dueDate);
+  }
 
   for (let i = 0; i < data.length; i++) {
     if (data[i].id === Number(id)) {
@@ -86,7 +92,7 @@ task_form_edit.addEventListener("submit", function (event) {
         : data[i].description;
       data[i].category = taskCategory ? taskCategory : data[i].category;
       data[i].priority = taskPriority ? taskPriority : data[i].priority;
-      data[i].dueDate = taskDueDate ? new Date(taskDueDate) : data[i].dueDate;
+      data[i].dueDate = dueDate ? dueDate : data[i].dueDate;
 
       if (subtask.length !== 0) {
         for (let st of subtask) data[i].subtask.push(st);
