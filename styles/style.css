@@ -52,3 +52,27 @@ ul {
 .obl {
   border-left: 1rem solid orange;
 }
+
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  html {
+    font-size: 40%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  html {
+    font-size: 35%;
+  }
+}
