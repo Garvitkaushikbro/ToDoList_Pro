@@ -35,10 +35,10 @@ operations.addEventListener("click", function (e) {
 
       const taskCategory = task_form.elements.form_task_category.value;
       const taskPriority = task_form.elements.form_task_priority.value;
-      const taskTag = task_form.elements.form_task_tag.value;
+      const taskTag = task_form.elements.form_task_tag.value.split(" ");
+      console.log(taskTag);
       const taskDueDate = task_form.elements.form_task_dueDate.value;
       let dueDate = new Date(taskDueDate);
-      dueDate = new Intl.DateTimeFormat("en-uk").format(dueDate);
       data.push({
         id: id,
         title: taskTitle,
@@ -46,8 +46,9 @@ operations.addEventListener("click", function (e) {
         subtask: subtask,
         category: taskCategory,
         priority: taskPriority,
-        dueDate: dueDate,
+        dueDate: new Intl.DateTimeFormat("en-IN").format(dueDate),
         done: false,
+        tags: taskTag,
       });
       id++;
       let activityLog = [...JSON.parse(localStorage.getItem("activityLog"))];

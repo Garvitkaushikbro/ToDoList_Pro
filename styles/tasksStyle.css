@@ -129,3 +129,24 @@ div.options {
 .sortOptions div:hover {
   font-weight: 700;
 }
+
+.heading {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.task_tags {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.2rem;
+  align-items: center;
+
+  font-size: 1.2rem;
+}
+
+.task_tags div {
+  border-radius: 4px;
+  background-color: #888;
+  padding: 0.5rem;
+}

@@ -81,7 +81,7 @@ task_form_edit.addEventListener("submit", function (event) {
   let dueDate;
   if (taskDueDate) {
     dueDate = new Date(taskDueDate);
-    dueDate = new Intl.DateTimeFormat("en-uk").format(dueDate);
+    dueDate = new Intl.DateTimeFormat("en-IN").format(dueDate);
   }
 
   for (let i = 0; i < data.length; i++) {

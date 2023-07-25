@@ -31,7 +31,13 @@ function render(data, filterFunction) {
     ${d.priority === "low" ? "gbl" : ""}
     ${d.priority === "medium" ? "obl" : ""} ">
       <div class="task_header">
-        <div class="task_title">${d.title}</div>
+        <div class='heading'>
+          <div class="task_title">${d.title}</div>
+          <div class="task_tags">`;
+    console.log("hi", d.tags);
+    for (let tag of d.tags) taskString += `<div>${tag}</div>`;
+
+    taskString += `</div></div>
         <div class="task_dueDate">Due date: ${d.dueDate}</div>
       </div>
       <div class="task_description ${d.done ? "hidden" : ""}">${
