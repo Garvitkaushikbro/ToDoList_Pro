@@ -23,26 +23,9 @@
   z-index: 5;
 }
 
-.overlayEdit {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
-  z-index: 5;
-}
-
 label {
   font-size: 2rem;
 }
-
-/* .form_task_subtask_head {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-} */
 
 label {
   display: block;
@@ -94,4 +77,16 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: rgb(250, 201, 103);
+}
+
+.close_form_task {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  stroke-width: 2;
+}
+
+.close_form_task:hover {
+  cursor: pointer;
 }

@@ -1,4 +1,23 @@
 const filter = document.querySelector(".filter");
+const modalFilter = document.querySelector(".modalFilter");
+const overlayFilter = document.querySelector(".overlayFilter");
+const formTaskFilter = document.querySelector("#form_task_filter");
+const closeModalFilter = document.querySelector(".close_form_task_filter");
+
+const removeModalFilter = function () {
+  overlayFilter.classList.add("hidden");
+  modalFilter.classList.add("hidden");
+};
+
+const showModalFilter = function () {
+  overlayFilter.classList.remove("hidden");
+  modalFilter.classList.remove("hidden");
+};
+
+overlayFilter.addEventListener("click", removeModalFilter);
+
+closeModalFilter.addEventListener("click", removeModalFilter);
+
 filter.addEventListener("mouseenter", function (e) {
   e.preventDefault();
   const filterOptions = document.querySelector(".filterOptions");
@@ -23,27 +42,40 @@ const showDone = (d) => d.done;
 const showNotDone = (d) => !d.done;
 
 filterOptions.addEventListener("click", function (e) {
-  let data = [...JSON.parse(localStorage.getItem("data"))];
   e.preventDefault();
+  let newData = JSON.parse(localStorage.getItem("data"));
+  newData = newData.map((obj) => {
+    obj.dueDate = new Date(obj.dueDate);
+    return obj;
+  });
   if (e.target.classList.contains("filterHigh")) {
-    render(data, showHigh);
+    render(newData, showHigh);
   } else if (e.target.classList.contains("filterLow")) {
-    render(data, showLow);
+    render(newData, showLow);
   } else if (e.target.classList.contains("filterMedium")) {
-    render(data, showMedium);
-  } else if (e.target.classList.contains("advanceFilter")) {
-    console.log("as");
+    render(newData, showMedium);
   } else if (e.target.classList.contains("noFilter")) {
-    render(data, showAll);
-  } else if (e.target.classList.contains("filterHome")) {
-    render(data, showHome);
-  } else if (e.target.classList.contains("filterOffice")) {
-    render(data, showOffice);
-  } else if (e.target.classList.contains("filterGym")) {
-    render(data, showGym);
+    render(newData, showAll);
   } else if (e.target.classList.contains("filterDone")) {
-    render(data, showDone);
+    render(newData, showDone);
   } else if (e.target.classList.contains("filterNotDone")) {
-    render(data, showNotDone);
+    render(newData, showNotDone);
+  } else if (e.target.classList.contains("categoryFilter")) {
+    showModalFilter();
   }
+});
+
+formTaskFilter.addEventListener("submit", function (e) {
+  e.preventDefault();
+  let newData = JSON.parse(localStorage.getItem("data"));
+  newData = newData.map((obj) => {
+    obj.dueDate = new Date(obj.dueDate);
+    return obj;
+  });
+  const selectedCategory = Array.from(
+    formTaskFilter.elements.form_task_category_filter.value.split(" ")
+  );
+  newData = newData.filter((d) => selectedCategory.includes(d.category));
+  formTaskFilter.reset();
+  render(newData, showAll);
 });

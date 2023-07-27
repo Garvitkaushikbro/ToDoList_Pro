@@ -13,32 +13,32 @@ sort.addEventListener("mouseleave", function (e) {
 
 const sortOptions = document.querySelector(".sortOptions");
 
-function compareByDate1(a, b) {
-  a = a.dueDate;
-  b = b.dueDate;
-  a = new Date(a.dueDate);
-  b = new Date(b.dueDate);
-  a = Number(a);
-  b = Number(b);
-  return a - b;
+function compareByDate1(dateStr1, dateStr2) {
+  const date1 = +dateStr1.dueDate;
+  const date2 = +dateStr2.dueDate;
+  return date1 - date2;
 }
 
-function compareByDate2(a, b) {
-  return b.dueDate - a.dueDate;
+function compareByDate2(dateStr1, dateStr2) {
+  const date1 = +dateStr1.dueDate;
+  const date2 = +dateStr2.dueDate;
+  return date2 - date1;
 }
 
 sortOptions.addEventListener("click", function (e) {
   let newData = JSON.parse(localStorage.getItem("data"));
+  newData = newData.map((obj) => {
+    obj.dueDate = new Date(obj.dueDate);
+    return obj;
+  });
   e.preventDefault();
   if (e.target.classList.contains("noSort")) {
     render(newData, showAll);
   } else if (e.target.classList.contains("sortRight")) {
     newData.sort(compareByDate2);
-    console.log(newData);
     render(newData, showAll);
   } else if (e.target.classList.contains("sortWrong")) {
     newData.sort(compareByDate1);
-    console.log(newData);
     render(newData, showAll);
   }
 });

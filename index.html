@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="styles/sideBarStyle.css" />
     <link rel="stylesheet" href="styles/activityLogContainer.css" />
     <link rel="stylesheet" href="styles/viewBackLogContainer.css" />
+    <link rel="stylesheet" href="styles/modalFilterStyle.css" />
   </head>
   <body>
     <div class="toDoListApp">
@@ -119,15 +120,12 @@
               <p>Filter</p>
               <div class="filterOptions hidden">
                 <div class="noFilter">No Filter</div>
-                <div class="filterHigh">High (P)</div>
-                <div class="filterLow">Low (P)</div>
-                <div class="filterMedium">Medium (P)</div>
-                <div class="filterHome">Home (C)</div>
-                <div class="filterOffice">Office (C)</div>
-                <div class="filterGym">Gym (C)</div>
+                <div class="filterHigh">High</div>
+                <div class="filterLow">Low</div>
+                <div class="filterMedium">Medium</div>
                 <div class="filterDone">Complete</div>
                 <div class="filterNotDone">Not complete</div>
-                <div class="advanceFilter">Advance Filter</div>
+                <div class="categoryFilter">Category Filter</div>
               </div>
             </div>
             <div class="sort ops">
@@ -159,6 +157,20 @@
     </div>
     <img class="rest" src="img/rest.jpg" />
     <div class="modal hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="close_form_task"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
       <form id="form_task">
         <label for="form_task_title">Title</label>
         <input
@@ -202,12 +214,13 @@
         </div>
         <div class="form_task_dropdown">
           <label for="form_task_category">Category</label>
-          <select name="form_task_category" class="form_task_category">
-            <option value="" disabled selected>Category</option>
-            <option value="home">Home</option>
-            <option value="office">Office</option>
-            <option value="gym">Gym</option>
-          </select>
+          <input
+            type="text"
+            name="form_task_category"
+            class="form_task_category"
+            placeholder="Add Category"
+          />
+
           <label for="form_task_priority">Priority</label>
           <select name="form_task_priority" class="form_task_priority">
             <option value="" disabled selected>Priority</option>
@@ -234,6 +247,20 @@
       </form>
     </div>
     <div class="modalEdit hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="close_form_task_edit"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
       <form id="form_task_edit">
         <label for="form_task_title_edit">Edit Title</label>
         <input
@@ -275,15 +302,12 @@
         </div>
         <div class="form_task_dropdown_edit">
           <label for="form_task_category_edit">Edit Category</label>
-          <select
+          <input
+            type="text"
             name="form_task_category_edit"
             class="form_task_category_edit"
-          >
-            <option value="" disabled selected>Category</option>
-            <option value="home">Home</option>
-            <option value="office">Office</option>
-            <option value="gym">Gym</option>
-          </select>
+            placeholder="Edit Category"
+          />
           <label for="form_task_priority_edit">Edit Priority</label>
           <select
             name="form_task_priority_edit"
@@ -311,13 +335,41 @@
         <input type="submit" class="form_task_submit_edit" value="Submit" />
       </form>
     </div>
+    <div class="modalFilter hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="close_form_task_filter"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <form id="form_task_filter">
+        <label for="form_task_category_filter">Enter Category</label>
+        <input
+          type="text"
+          name="form_task_category_filter"
+          class="form_task_category_filter"
+          placeholder="Enter Categories seperated by spaces"
+        />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
+    <div class="overlayEdit hidden"></div>
+    <div class="overlayFilter hidden"></div>
+
     <div id="activityLogContainer" class="hidden"></div>
     <div class="overlayactivityLog overlay hidden"></div>
     <div id="viewBackLogContainer" class="hidden"></div>
     <div class="overlayviewBackLog overlay hidden"></div>
 
-    <div class="overlay hidden"></div>
-    <div class="overlayEdit hidden"></div>
     <script src="scripts/script.js"></script>
     <script src="scripts/addFunctionality.js"></script>
     <script src="scripts/optionsFunctionality.js"></script>
