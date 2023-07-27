@@ -148,4 +148,5 @@ div.options {
 .task_tags div {
   border-radius: 4px;
   background-color: #888;
+  padding: 0.5rem;
 }

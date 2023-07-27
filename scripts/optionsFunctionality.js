@@ -100,7 +100,11 @@ task_form_edit.addEventListener("submit", function (event) {
 
   const taskCategory = task_form_edit.elements.form_task_category_edit.value;
   const taskPriority = task_form_edit.elements.form_task_priority_edit.value;
-  const taskTag = task_form_edit.elements.form_task_tag_edit.value;
+  const taskTag =
+    task_form_edit.elements.form_task_tag_edit.value.length > 0
+      ? task_form_edit.elements.form_task_tag_edit.value.split(" ")
+      : [];
+  console.log(taskTag);
   const taskDueDate = task_form_edit.elements.form_task_dueDate_edit.value;
   let dueDate;
   if (taskDueDate) dueDate = new Date(taskDueDate);
@@ -114,7 +118,7 @@ task_form_edit.addEventListener("submit", function (event) {
       newData[i].category = taskCategory ? taskCategory : newData[i].category;
       newData[i].priority = taskPriority ? taskPriority : newData[i].priority;
       newData[i].dueDate = dueDate ? dueDate : newData[i].dueDate;
-
+      newData[i].tags = [...newData[i].tags, ...taskTag];
       if (subtask.length !== 0) {
         for (let st of subtask) newData[i].subtask.push(st);
       }

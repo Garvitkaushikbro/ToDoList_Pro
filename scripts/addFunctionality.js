@@ -69,7 +69,10 @@ task_form.addEventListener("submit", function (event) {
 
   const taskCategory = task_form.elements.form_task_category.value;
   const taskPriority = task_form.elements.form_task_priority.value;
-  const taskTag = task_form.elements.form_task_tag.value.split(" ");
+  const taskTag =
+    task_form.elements.form_task_tag.value.length > 0
+      ? task_form.elements.form_task_tag.value.split(" ")
+      : [];
   const taskDueDate = task_form.elements.form_task_dueDate.value;
   const dueDate = new Date(taskDueDate);
   newData.push({
