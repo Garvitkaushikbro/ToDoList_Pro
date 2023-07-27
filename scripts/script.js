@@ -1,4 +1,23 @@
-let data = [];
+let data = [
+  {
+    title: "gym",
+    description: "gym hard",
+    priority: "high",
+    dueDate: new Date(Date.now()),
+    subtask: ["push up", "soulder"],
+    tags: ["@gym"],
+    category: "hi",
+  },
+  {
+    title: "office",
+    description: "gym hard",
+    priority: "low",
+    dueDate: new Date(Date.now()),
+    subtask: ["push up", "soulder"],
+    tags: ["@gym"],
+    category: "hi",
+  },
+];
 let id = 0;
 let isHamburgerOpen = false;
 let activityLog = [];
@@ -25,7 +44,9 @@ function render(data, filterFunction) {
   for (let d of currentData) {
     let li = document.createElement("li");
     li.classList.add(d.id);
+    li.classList.add("draggable");
     li.classList.add("task_and_option");
+    li.setAttribute("draggable", "true");
     let taskString = `<div class="task ${d.done ? "blur" : ""} 
     ${d.priority === "high" ? "rbl" : ""} 
     ${d.priority === "low" ? "gbl" : ""}
@@ -88,6 +109,12 @@ function render(data, filterFunction) {
     options.insertAdjacentHTML("beforeend", remove);
 
     li.appendChild(options);
+    li.addEventListener("dragstart", () => {
+      li.classList.add("dragging");
+    });
+    li.addEventListener("dragend", () => {
+      li.classList.remove("dragging");
+    });
     listTask.appendChild(li);
     const rest = document.querySelector(".rest");
     if (data.length !== 0) rest.classList.add("hidden");
@@ -123,3 +150,5 @@ document.querySelector(".dateContainer h1").textContent = week[time.getDay()];
 document.querySelector(".dateContainer h2").textContent = `${time.getDate()} ${
   year[time.getMonth()]
 }'${currentYear.slice(2)}`;
+
+render(data, showAll);

@@ -76,3 +76,7 @@ ul {
     font-size: 35%;
   }
 }
+
+.dragging {
+  opacity: 0.5;
+}

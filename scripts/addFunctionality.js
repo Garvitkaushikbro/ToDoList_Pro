@@ -116,11 +116,13 @@ taskFormSearch.addEventListener("submit", function (event) {
   });
   const keyword = taskFormSearch.elements.form_task_search.value;
   newData = newData.filter((d) => {
-    if (d.title.toLowerCase() === keyword.toLowerCase()) return true;
-    if (d.description.toLowerCase() === keyword.toLowerCase()) return true;
+    if (d.title.toLowerCase().includes(keyword.toLowerCase())) return true;
+    if (d.description.toLowerCase().includes(keyword.toLowerCase()))
+      return true;
     if (d.tags.includes(keyword)) return true;
     return false;
   });
   removeModalSearch();
+  taskFormSearch.reset();
   render(newData, showAll);
 });
