@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="styles/activityLogContainer.css" />
     <link rel="stylesheet" href="styles/viewBackLogContainer.css" />
     <link rel="stylesheet" href="styles/modalFilterStyle.css" />
+    <link rel="stylesheet" href="styles/modalSearchStyle.css" />
   </head>
   <body>
     <div class="toDoListApp">
@@ -361,9 +362,36 @@
         <input type="submit" value="Submit" />
       </form>
     </div>
+    <div class="modalSearch hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="close_form_task_search"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <form id="form_task_search">
+        <label for="form_task_search">Search by Title, Desc. or Tag</label>
+        <input
+          type="text"
+          name="form_task_search"
+          class="form_task_search"
+          placeholder=""
+        />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
     <div class="overlay hidden"></div>
     <div class="overlayEdit hidden"></div>
     <div class="overlayFilter hidden"></div>
+    <div class="overlaySearch hidden"></div>
 
     <div id="activityLogContainer" class="hidden"></div>
     <div class="overlayactivityLog overlay hidden"></div>
