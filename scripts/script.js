@@ -1,23 +1,4 @@
-let data = [
-  {
-    title: "gym",
-    description: "gym hard",
-    priority: "high",
-    dueDate: new Date(Date.now()),
-    subtask: ["push up", "soulder"],
-    tags: ["@gym"],
-    category: "hi",
-  },
-  {
-    title: "office",
-    description: "gym hard",
-    priority: "low",
-    dueDate: new Date(Date.now()),
-    subtask: ["push up", "soulder"],
-    tags: ["@gym"],
-    category: "hi",
-  },
-];
+let data = [];
 let id = 0;
 let isHamburgerOpen = false;
 let activityLog = [];
@@ -151,4 +132,23 @@ document.querySelector(".dateContainer h2").textContent = `${time.getDate()} ${
   year[time.getMonth()]
 }'${currentYear.slice(2)}`;
 
-render(data, showAll);
+function checkDueDate() {
+  let newData = JSON.parse(localStorage.getItem("data"));
+  newData = newData.map((obj) => {
+    obj.dueDate = new Date(obj.dueDate);
+    return obj;
+  });
+  const date = new Date();
+  newData.forEach((d) => {
+    if (
+      d.dueDate.getDay() === date.getDay() &&
+      d.dueDate.getMonth() === date.getMonth() &&
+      d.dueDate.getFullYear() === date.getFullYear() &&
+      !d.done
+    ) {
+      alert(d.title);
+    }
+  });
+}
+checkDueDate();
+setInterval(checkDueDate, 60000);
