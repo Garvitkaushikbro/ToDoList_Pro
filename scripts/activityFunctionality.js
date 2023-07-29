@@ -93,9 +93,6 @@ sideBar.addEventListener("click", function (e) {
       titleParagraph.textContent = `Title: ${data.title}`;
       viewBackDiv.appendChild(titleParagraph);
 
-      const descriptionParagraph = document.createElement("p");
-      descriptionParagraph.textContent = `Description: ${data.description}`;
-      viewBackDiv.appendChild(descriptionParagraph);
       const option = {
         hour: "numeric",
         minute: "numeric",
@@ -103,11 +100,25 @@ sideBar.addEventListener("click", function (e) {
         month: "long",
         day: "numeric",
       };
-      const date = new Intl.DateTimeFormat("en-IN", option).format(
+      const dateOption = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+
+      const timeOption = {
+        hour: "numeric",
+        minute: "numeric",
+      };
+
+      const date = new Intl.DateTimeFormat("en-IN", dateOption).format(
+        data.dueDate
+      );
+      const time = new Intl.DateTimeFormat("en-IN", timeOption).format(
         data.dueDate
       );
       const dueDateParagraph = document.createElement("p");
-      dueDateParagraph.textContent = `Due Date: ${date}`;
+      dueDateParagraph.textContent = `Due: ${date}|${time}`;
       viewBackDiv.appendChild(dueDateParagraph);
 
       viewBackLogContainer.appendChild(viewBackDiv);
