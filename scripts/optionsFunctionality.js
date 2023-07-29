@@ -95,8 +95,8 @@ task_form_edit.addEventListener("submit", function (event) {
   const inputElements = form_task_subtasks_edit.querySelectorAll(
     "input[name='form_task_subtask_edit[]']"
   );
-  const subtask = Array.from(inputElements, (input) => input.value);
-  if (subtask.length === 1 && subtask[0] === "") subtask.splice(0, 1);
+  const Subtask = Array.from(inputElements, (input) => input.value);
+  const subtask = Subtask.filter((st) => st !== "");
 
   const taskCategory = task_form_edit.elements.form_task_category_edit.value;
   const taskPriority = task_form_edit.elements.form_task_priority_edit.value;

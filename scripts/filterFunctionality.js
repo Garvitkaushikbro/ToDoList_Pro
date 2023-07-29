@@ -77,5 +77,6 @@ formTaskFilter.addEventListener("submit", function (e) {
   );
   newData = newData.filter((d) => selectedCategory.includes(d.category));
   formTaskFilter.reset();
+  removeModalFilter();
   render(newData, showAll);
 });

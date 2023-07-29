@@ -19,7 +19,7 @@ overlayviewBackLog.addEventListener("click", function () {
 sideBar.addEventListener("click", function (e) {
   e.preventDefault();
   if (e.target.classList.contains("activityLogs")) {
-    const activityLog = [...JSON.parse(localStorage.getItem("activityLog"))];
+    const activityLog = JSON.parse(localStorage.getItem("activityLog"));
     overlayactivityLog.classList.remove("hidden");
     activityLogContainer.classList.remove("hidden");
 
