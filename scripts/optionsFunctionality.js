@@ -104,10 +104,6 @@ task_form_edit.addEventListener("submit", function (event) {
     task_form_edit.elements.form_task_tag_edit.value.length > 0
       ? task_form_edit.elements.form_task_tag_edit.value.split(" ")
       : [];
-  console.log(taskTag);
-  const taskDueDate = task_form_edit.elements.form_task_dueDate_edit.value;
-  let dueDate;
-  if (taskDueDate) dueDate = new Date(taskDueDate);
 
   for (let i = 0; i < newData.length; i++) {
     if (newData[i].id === Number(id)) {
@@ -117,7 +113,16 @@ task_form_edit.addEventListener("submit", function (event) {
         : newData[i].description;
       newData[i].category = taskCategory ? taskCategory : newData[i].category;
       newData[i].priority = taskPriority ? taskPriority : newData[i].priority;
+      const taskDueDate = task_form_edit.elements.form_task_dueDate_edit.value;
+      const dateInput = document.getElementById("timeInputFormEdit").value;
+      const [hours, minutes] = dateInput.split(":");
+      let dueDate;
+      if (taskDueDate) dueDate = new Date(taskDueDate);
       newData[i].dueDate = dueDate ? dueDate : newData[i].dueDate;
+      if (hours) {
+        newData[i].dueDate.setHours(hours);
+        newData[i].dueDate.setMinutes(minutes);
+      }
       newData[i].tags = [...newData[i].tags, ...taskTag];
       if (subtask.length !== 0) {
         for (let st of subtask) newData[i].subtask.push(st);

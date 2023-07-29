@@ -38,9 +38,14 @@ function render(data, filterFunction) {
           <div class="task_tags">`;
 
     for (let tag of d.tags) taskString += `<div>${tag}</div>`;
-    const date = new Intl.DateTimeFormat("en-IN").format(d.dueDate);
+    const option = {
+      dateStyle: "full",
+      timeStyle: "short",
+      weekday: "narrow",
+    };
+    const date = new Intl.DateTimeFormat("en-IN", option).format(d.dueDate);
     taskString += `</div></div>
-        <div class="task_dueDate">Due date: ${date}</div>
+        <div class="task_dueDate">${date}</div>
       </div>
       <div class="task_description ${d.done ? "hidden" : ""}">${
       d.description
@@ -138,17 +143,27 @@ function checkDueDate() {
     obj.dueDate = new Date(obj.dueDate);
     return obj;
   });
-  const date = new Date();
+  let date = new Date();
+  date = +date;
   newData.forEach((d) => {
-    if (
-      d.dueDate.getDay() === date.getDay() &&
-      d.dueDate.getMonth() === date.getMonth() &&
-      d.dueDate.getFullYear() === date.getFullYear() &&
-      !d.done
-    ) {
-      alert(d.title);
-    }
+    let cd = d.dueDate;
+    cd = +cd;
+    if (date > cd && !d.done) alert(`Due Date Alert: ${d.title}`);
   });
 }
 checkDueDate();
 setInterval(checkDueDate, 60000);
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    console.log(e.key);
+    overlaySearch.classList.add("hidden");
+    modalSearch.classList.add("hidden");
+    overlay.classList.add("hidden");
+    modal.classList.add("hidden");
+    isHamburgerOpen = false;
+    localStorage.setItem("isHamburgerOpen", JSON.stringify(isHamburgerOpen));
+    const sideBar = document.querySelector(".sideBar");
+    sideBar.style.transform = "";
+  }
+});

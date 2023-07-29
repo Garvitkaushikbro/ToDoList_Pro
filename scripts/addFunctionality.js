@@ -74,7 +74,16 @@ task_form.addEventListener("submit", function (event) {
       ? task_form.elements.form_task_tag.value.split(" ")
       : [];
   const taskDueDate = task_form.elements.form_task_dueDate.value;
-  const dueDate = new Date(taskDueDate);
+  const dateInput = document.getElementById("timeInputForm").value;
+  // Split dateInput into hours and minutes
+  const [hours, minutes] = dateInput.split(":");
+
+  // Split taskDueDate into year, month, and day
+  const [year, month, day] = taskDueDate.split("-");
+
+  // Create the Date object with date and time
+  const dueDate = new Date(year, month - 1, day, hours, minutes);
+
   newData.push({
     id: id,
     title: taskTitle,

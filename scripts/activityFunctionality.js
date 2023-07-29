@@ -12,7 +12,7 @@ overlayactivityLog.addEventListener("click", function () {
 
 overlayviewBackLog.addEventListener("click", function () {
   viewBackLogContainer.innerHTML = "";
-  overlay.classList.add("hidden");
+  overlayviewBackLog.classList.add("hidden");
   viewBackLogContainer.classList.add("hidden");
 });
 
@@ -73,15 +73,23 @@ sideBar.addEventListener("click", function (e) {
       activityLogContainer.appendChild(activityDiv);
     });
   } else if (e.target.classList.contains("viewBackLogs")) {
-    overlay.classList.remove("hidden");
+    overlayviewBackLog.classList.remove("hidden");
     viewBackLogContainer.classList.remove("hidden");
 
-    filteredData = [...JSON.parse(localStorage.getItem("data"))];
-    filteredData = filteredData.filter((d) => {
-      let x = new Date(Date.now());
-      let y = new Date(y);
-      return y - x < 0;
+    filteredData = JSON.parse(localStorage.getItem("data"));
+    filteredData = filteredData.map((obj) => {
+      obj.dueDate = new Date(obj.dueDate);
+      return obj;
     });
+
+    console.log(filteredData);
+    filteredData = filteredData.filter((d) => {
+      let x = Date.now();
+      let y = new Date(d.dueDate);
+      y = +y;
+      return y < x && !d.done;
+    });
+    console.log(filteredData);
     filteredData.forEach((data) => {
       const viewBackDiv = document.createElement("div");
       viewBackDiv.classList.add("viewBack");
@@ -98,32 +106,39 @@ sideBar.addEventListener("click", function (e) {
       descriptionParagraph.textContent = `Description: ${data.description}`;
       viewBackDiv.appendChild(descriptionParagraph);
 
-      const doneParagraph = document.createElement("p");
-      doneParagraph.textContent = `Done: ${data.done ? "Yes" : "No"}`;
-      viewBackDiv.appendChild(doneParagraph);
+      // const doneParagraph = document.createElement("p");
+      // doneParagraph.textContent = `Done: ${data.done ? "Yes" : "No"}`;
+      // viewBackDiv.appendChild(doneParagraph);
 
-      const categoryParagraph = document.createElement("p");
-      categoryParagraph.textContent = `Category: ${data.category}`;
-      viewBackDiv.appendChild(categoryParagraph);
+      // const categoryParagraph = document.createElement("p");
+      // categoryParagraph.textContent = `Category: ${data.category}`;
+      // viewBackDiv.appendChild(categoryParagraph);
 
-      const priorityParagraph = document.createElement("p");
-      priorityParagraph.textContent = `Priority: ${data.priority}`;
-      viewBackDiv.appendChild(priorityParagraph);
+      // const priorityParagraph = document.createElement("p");
+      // priorityParagraph.textContent = `Priority: ${data.priority}`;
+      // viewBackDiv.appendChild(priorityParagraph);
 
-      if (data.subtask.length > 0) {
-        const subtaskList = document.createElement("ul");
-        subtaskList.textContent = "Subtasks:";
-        subtaskList.classList.add("subtask");
-        data.subtask.forEach((subtask) => {
-          const subtaskItem = document.createElement("li");
-          subtaskItem.textContent = subtask;
-          subtaskList.appendChild(subtaskItem);
-        });
-        viewBackDiv.appendChild(subtaskList);
-      }
-
+      // if (data.subtask.length > 0) {
+      //   const subtaskList = document.createElement("ul");
+      //   subtaskList.textContent = "Subtasks:";
+      //   subtaskList.classList.add("subtask");
+      //   data.subtask.forEach((subtask) => {
+      //     const subtaskItem = document.createElement("li");
+      //     subtaskItem.textContent = subtask;
+      //     subtaskList.appendChild(subtaskItem);
+      //   });
+      //   viewBackDiv.appendChild(subtaskList);
+      // }
+      const option = {
+        dateStyle: "full",
+        timeStyle: "short",
+        weekday: "narrow",
+      };
+      const date = new Intl.DateTimeFormat("en-IN", option).format(
+        data.dueDate
+      );
       const dueDateParagraph = document.createElement("p");
-      dueDateParagraph.textContent = `Due Date: ${data.dueDate.toLocaleString()}`;
+      dueDateParagraph.textContent = `Due Date: ${date}`;
       viewBackDiv.appendChild(dueDateParagraph);
 
       viewBackLogContainer.appendChild(viewBackDiv);
