@@ -70,10 +70,11 @@ task_form.addEventListener("submit", function (event) {
 
   const taskCategory = task_form.elements.form_task_category.value;
   const taskPriority = task_form.elements.form_task_priority.value;
-  const taskTag =
+  let taskTag =
     task_form.elements.form_task_tag.value.length > 0
       ? task_form.elements.form_task_tag.value.split(" ")
       : [];
+  taskTag = taskTag.filter((t) => t !== "");
   const taskDueDate = task_form.elements.form_task_dueDate.value;
   const dateInput = document.getElementById("timeInputForm").value;
   // Split dateInput into hours and minutes
