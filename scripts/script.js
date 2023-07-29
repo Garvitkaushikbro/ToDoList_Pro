@@ -38,16 +38,29 @@ function render(data, filterFunction) {
           <div class="task_tags">`;
 
     for (let tag of d.tags) taskString += `<div>${tag}</div>`;
-    const option = {
-      hour: "numeric",
-      minute: "numeric",
+    // const option = {
+    //   hour: "numeric",
+    //   minute: "numeric",
+    //   year: "numeric",
+    //   month: "long",
+    //   day: "numeric",
+    // };
+    // const date = new Intl.DateTimeFormat("en-IN", option).format(d.dueDate);
+    const dateOption = {
       year: "numeric",
       month: "long",
       day: "numeric",
     };
-    const date = new Intl.DateTimeFormat("en-IN", option).format(d.dueDate);
+
+    const timeOption = {
+      hour: "numeric",
+      minute: "numeric",
+    };
+
+    const date = new Intl.DateTimeFormat("en-IN", dateOption).format(d.dueDate);
+    const time = new Intl.DateTimeFormat("en-IN", timeOption).format(d.dueDate);
     taskString += `</div></div>
-        <div class="task_dueDate">${date}</div>
+        <div class="task_dueDate">${date}|${time}</div>
       </div>
       <div class="task_description ${d.done ? "hidden" : ""}">${
       d.description
