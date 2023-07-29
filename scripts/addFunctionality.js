@@ -110,6 +110,7 @@ task_form.addEventListener("submit", function (event) {
       priority: taskPriority,
       dueDate: dueDate,
       done: false,
+      timestamp: new Date(),
     },
   });
   localStorage.setItem("activityLog", JSON.stringify(activityLog));
@@ -147,7 +148,6 @@ const timeInput = document.getElementById("timeInputForm");
 
 taskTitleInput.addEventListener("input", function () {
   const title = taskTitleInput.value.toLowerCase();
-  console.log(title);
   const currentDate = new Date();
 
   if (title.includes("by tomorrow")) {
@@ -164,6 +164,7 @@ taskTitleInput.addEventListener("input", function () {
       dateObject.getMinutes()
     ).padStart(2, "0")}`;
     dueDateInput.value = formatDate(dateObject);
+    taskTitleInput.value = title.replace(title.slice(title.indexOf("by")), "");
   }
 });
 

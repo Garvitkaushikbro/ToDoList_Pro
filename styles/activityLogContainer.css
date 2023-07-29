@@ -2,22 +2,11 @@
   font-family: ubuntu;
   border: 1px solid var(--color-medium);
   padding: 10px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-.activity h3 {
-  margin: 0;
-}
-.activity p {
-  margin: 0;
-}
-.activity .subtask {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 #activityLogContainer {
@@ -26,14 +15,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 
   background-color: rgb(231, 222, 206);
-  padding: 6rem;
+  padding: 4rem;
   border-radius: 0.5rem;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
-
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }

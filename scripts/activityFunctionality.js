@@ -24,7 +24,6 @@ sideBar.addEventListener("click", function (e) {
     overlayactivityLog.classList.remove("hidden");
     activityLogContainer.classList.remove("hidden");
 
-    // Loop through the activityLog array and generate HTML for each entry
     activityLog.forEach((entry) => {
       const activityDiv = document.createElement("div");
       activityDiv.classList.add("activity");
@@ -43,33 +42,23 @@ sideBar.addEventListener("click", function (e) {
       descriptionParagraph.textContent = `Description: ${data.description}`;
       activityDiv.appendChild(descriptionParagraph);
 
-      // const doneParagraph = document.createElement("p");
-      // doneParagraph.textContent = `Done: ${data.done ? "Yes" : "No"}`;
-      // activityDiv.appendChild(doneParagraph);
+      const dateOption = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
 
-      // const categoryParagraph = document.createElement("p");
-      // categoryParagraph.textContent = `Category: ${data.category}`;
-      // activityDiv.appendChild(categoryParagraph);
+      const timeOption = {
+        hour: "numeric",
+        minute: "numeric",
+      };
 
-      // const priorityParagraph = document.createElement("p");
-      // priorityParagraph.textContent = `Priority: ${data.priority}`;
-      // activityDiv.appendChild(priorityParagraph);
-
-      // if (data.subtask.length > 0) {
-      //   const subtaskList = document.createElement("ul");
-      //   subtaskList.textContent = "Subtasks:";
-      //   subtaskList.classList.add("subtask");
-      //   data.subtask.forEach((subtask) => {
-      //     const subtaskItem = document.createElement("li");
-      //     subtaskItem.textContent = subtask;
-      //     subtaskList.appendChild(subtaskItem);
-      //   });
-      //   activityDiv.appendChild(subtaskList);
-      // }
-
-      // const dueDateParagraph = document.createElement("p");
-      // dueDateParagraph.textContent = `Due Date: ${data.dueDate.toLocaleString()}`;
-      // activityDiv.appendChild(dueDateParagraph);
+      const dueDate = new Date(data.dueDate);
+      const date = new Intl.DateTimeFormat("en-IN", dateOption).format(dueDate);
+      const time = new Intl.DateTimeFormat("en-IN", timeOption).format(dueDate);
+      const timestampParagraph = document.createElement("p");
+      descriptionParagraph.textContent = date + "|" + time;
+      activityDiv.appendChild(timestampParagraph);
 
       activityLogContainer.appendChild(activityDiv);
     });
@@ -107,30 +96,6 @@ sideBar.addEventListener("click", function (e) {
       const descriptionParagraph = document.createElement("p");
       descriptionParagraph.textContent = `Description: ${data.description}`;
       viewBackDiv.appendChild(descriptionParagraph);
-
-      // const doneParagraph = document.createElement("p");
-      // doneParagraph.textContent = `Done: ${data.done ? "Yes" : "No"}`;
-      // viewBackDiv.appendChild(doneParagraph);
-
-      // const categoryParagraph = document.createElement("p");
-      // categoryParagraph.textContent = `Category: ${data.category}`;
-      // viewBackDiv.appendChild(categoryParagraph);
-
-      // const priorityParagraph = document.createElement("p");
-      // priorityParagraph.textContent = `Priority: ${data.priority}`;
-      // viewBackDiv.appendChild(priorityParagraph);
-
-      // if (data.subtask.length > 0) {
-      //   const subtaskList = document.createElement("ul");
-      //   subtaskList.textContent = "Subtasks:";
-      //   subtaskList.classList.add("subtask");
-      //   data.subtask.forEach((subtask) => {
-      //     const subtaskItem = document.createElement("li");
-      //     subtaskItem.textContent = subtask;
-      //     subtaskList.appendChild(subtaskItem);
-      //   });
-      //   viewBackDiv.appendChild(subtaskList);
-      // }
       const option = {
         hour: "numeric",
         minute: "numeric",

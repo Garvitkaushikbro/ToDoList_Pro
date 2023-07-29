@@ -30,7 +30,17 @@ listTask.addEventListener("click", function (e) {
       if (newData[i].id === Number(id)) {
         activityLog.push({
           action: "delete",
-          data: newData[i],
+          data: {
+            id: newData[i].id,
+            title: newData[i].title,
+            description: newData[i].description,
+            subtask: newData[i].subtask,
+            category: newData[i].category,
+            priority: newData[i].priority,
+            dueDate: newData[i].dueDate,
+            done: newData[i].done,
+            timestamp: new Date(),
+          },
         });
         newData.splice(i, i + 1);
         break;
@@ -130,7 +140,17 @@ task_form_edit.addEventListener("submit", function (event) {
       const activityLog = JSON.parse(localStorage.getItem("activityLog"));
       activityLog.push({
         action: "edit",
-        data: newData[i],
+        data: {
+          id: newData[i].id,
+          title: newData[i].title,
+          description: newData[i].description,
+          subtask: newData[i].subtask,
+          category: newData[i].category,
+          priority: newData[i].priority,
+          dueDate: newData[i].dueDate,
+          done: newData[i].done,
+          timestamp: new Date(),
+        },
       });
       localStorage.setItem("activityLog", JSON.stringify(activityLog));
       localStorage.setItem("data", JSON.stringify(newData));

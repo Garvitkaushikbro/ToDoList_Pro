@@ -184,3 +184,15 @@ window.addEventListener("keydown", (e) => {
     sideBar.style.transform = "";
   }
 });
+
+document.addEventListener("click", (e) => {
+  const sideBar = document.querySelector(".sideBar");
+  const sidebarButton = document.querySelector(".navHamburger");
+  const isSidebarClicked =
+    sideBar.contains(e.target) || sidebarButton.contains(e.target);
+  if (!isSidebarClicked) {
+    isHamburgerOpen = false;
+    localStorage.setItem("isHamburgerOpen", JSON.stringify(isHamburgerOpen));
+    sideBar.style.transform = "";
+  }
+});
