@@ -3,6 +3,8 @@ nav {
   height: fit-content;
   color: var(--color-dark);
   font-family: ubuntu;
+
+  height: 6.5rem;
 }
 
 .navContent {

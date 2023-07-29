@@ -1,5 +1,5 @@
 .sideBar {
-  height: 100vh;
+  height: calc(100vh - 6.5rem);
   background-color: var(--color-light-2);
   position: absolute;
   transition: all 1s ease;

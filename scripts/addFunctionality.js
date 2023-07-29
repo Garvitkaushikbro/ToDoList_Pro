@@ -140,3 +140,64 @@ taskFormSearch.addEventListener("submit", function (event) {
   taskFormSearch.reset();
   render(newData, showAll);
 });
+
+const taskTitleInput = document.querySelector(".form_task_title");
+const dueDateInput = document.querySelector(".form_task_dueDate");
+const timeInput = document.getElementById("timeInputForm");
+
+taskTitleInput.addEventListener("input", function () {
+  const title = taskTitleInput.value.toLowerCase();
+  console.log(title);
+  const currentDate = new Date();
+
+  if (title.includes("by tomorrow")) {
+    const tomorrow = new Date(currentDate);
+    tomorrow.setDate(currentDate.getDate() + 1);
+    dueDateInput.value = formatDate(tomorrow);
+    timeInput.value = "00:00";
+    taskTitleInput.value = title.replace("by tomorrow", "");
+  } else if (title.includes("by")) {
+    const byIndex = title.indexOf("by");
+    const dateStr = title.substring(byIndex + 3);
+    const dateObject = parseDate(dateStr);
+    timeInput.value = `${dateObject.getHours()}:${String(
+      dateObject.getMinutes()
+    ).padStart(2, "0")}`;
+    dueDateInput.value = formatDate(dateObject);
+  }
+});
+
+function parseDate(str) {
+  // Convert the string to a standard format for parsing
+  str = str.replace(/(st|nd|rd|th)/g, "");
+
+  // Split the string into date and time parts
+  const [day, month, year, x, y] = str.split(" ");
+
+  timePart = x + " " + y;
+  // Get the 12-hour time and AM/PM from the time part
+  const [time, ampm] = timePart.split(" ");
+
+  // Convert the hour to 24-hour format
+  let hour = parseInt(time);
+
+  if (ampm && ampm.toLowerCase() === "pm" && hour !== 12) {
+    hour += 12;
+  } else if (ampm && ampm.toLowerCase() === "am" && hour === 12) {
+    hour = 0;
+  }
+  const dateString = day + " " + month + " " + year;
+  const date = new Date(Date.parse(dateString));
+
+  date.setHours(hour);
+  date.setMinutes(parseInt(time.split(":")[1]) || 0);
+  date.setSeconds(0);
+  return date;
+}
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  let month = (date.getMonth() + 1).toString().padStart(2, "0");
+  let day = date.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
