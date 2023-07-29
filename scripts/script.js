@@ -163,6 +163,8 @@ window.addEventListener("keydown", (e) => {
     modalSearch.classList.add("hidden");
     overlay.classList.add("hidden");
     modal.classList.add("hidden");
+    activityLogContainer.classList.add("hidden");
+    overlayactivityLog.classList.add("hidden");
     isHamburgerOpen = false;
     localStorage.setItem("isHamburgerOpen", JSON.stringify(isHamburgerOpen));
     const sideBar = document.querySelector(".sideBar");

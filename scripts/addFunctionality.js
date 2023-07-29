@@ -57,6 +57,7 @@ task_form.addEventListener("submit", function (event) {
     obj.dueDate = new Date(obj.dueDate);
     return obj;
   });
+
   const taskTitle = task_form.elements.form_task_title.value;
   const taskDescription = task_form.elements.form_task_description.value;
 
