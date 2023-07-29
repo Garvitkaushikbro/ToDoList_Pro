@@ -19,6 +19,7 @@ overlayviewBackLog.addEventListener("click", function () {
 sideBar.addEventListener("click", function (e) {
   e.preventDefault();
   if (e.target.classList.contains("activityLogs")) {
+    activityLogContainer.innerHTML = "";
     const activityLog = JSON.parse(localStorage.getItem("activityLog"));
     overlayactivityLog.classList.remove("hidden");
     activityLogContainer.classList.remove("hidden");
@@ -73,6 +74,7 @@ sideBar.addEventListener("click", function (e) {
       activityLogContainer.appendChild(activityDiv);
     });
   } else if (e.target.classList.contains("viewBackLogs")) {
+    viewBackLogContainer.innerHTML = "";
     overlayviewBackLog.classList.remove("hidden");
     viewBackLogContainer.classList.remove("hidden");
 
