@@ -130,9 +130,11 @@ sideBar.addEventListener("click", function (e) {
       //   viewBackDiv.appendChild(subtaskList);
       // }
       const option = {
-        dateStyle: "full",
-        timeStyle: "short",
-        weekday: "narrow",
+        hour: "numeric",
+        minute: "numeric",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
       };
       const date = new Intl.DateTimeFormat("en-IN", option).format(
         data.dueDate

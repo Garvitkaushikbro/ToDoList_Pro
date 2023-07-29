@@ -39,9 +39,11 @@ function render(data, filterFunction) {
 
     for (let tag of d.tags) taskString += `<div>${tag}</div>`;
     const option = {
-      dateStyle: "full",
-      timeStyle: "short",
-      weekday: "narrow",
+      hour: "numeric",
+      minute: "numeric",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     };
     const date = new Intl.DateTimeFormat("en-IN", option).format(d.dueDate);
     taskString += `</div></div>
