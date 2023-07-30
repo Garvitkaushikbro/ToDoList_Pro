@@ -1,12 +1,20 @@
 const container = document.querySelector("#listTask");
+const container2All = document.querySelectorAll(".task_subtask");
 
 container.addEventListener("dragover", (e) => {
   e.preventDefault(); // Add this line to enable drop
-  const drag = document.querySelector(".dragging");
-  const afterElement = getDragAfterElement(container, e.clientY);
+  if (
+    e.target.classList.contains("subtask") ||
+    e.target.classList.contains("task_subtask")
+  ) {
+    return;
+  } else {
+    const drag = document.querySelector(".dragging");
+    const afterElement = getDragAfterElement(container, e.clientY);
 
-  if (afterElement === null) container.appendChild(drag);
-  else container.insertBefore(drag, afterElement);
+    if (afterElement === null) container.appendChild(drag);
+    else container.insertBefore(drag, afterElement);
+  }
 });
 
 function getDragAfterElement(container, y) {

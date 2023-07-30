@@ -38,14 +38,7 @@ function render(data, filterFunction) {
           <div class="task_tags">`;
 
     for (let tag of d.tags) taskString += `<div>${tag}</div>`;
-    // const option = {
-    //   hour: "numeric",
-    //   minute: "numeric",
-    //   year: "numeric",
-    //   month: "long",
-    //   day: "numeric",
-    // };
-    // const date = new Intl.DateTimeFormat("en-IN", option).format(d.dueDate);
+
     const dateOption = {
       year: "numeric",
       month: "long",
@@ -69,7 +62,7 @@ function render(data, filterFunction) {
 
     for (let i = 0; i < d.subtask.length; i++) {
       let st = d.subtask[i];
-      taskString += `<li class="subtask">- ${st} <svg data-tab=${i} class="deleteSubtask" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      taskString += `<li class="subtask draggable_subtask" draggable="true">- ${st} <svg data-tab=${i} class="deleteSubtask" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
   </svg>
   </li>`;
@@ -110,11 +103,31 @@ function render(data, filterFunction) {
     options.insertAdjacentHTML("beforeend", remove);
 
     li.appendChild(options);
-    li.addEventListener("dragstart", () => {
-      li.classList.add("dragging");
+    li.querySelector(".task_subtask").addEventListener("dragover", (e) => {
+      e.preventDefault(); // Add this line to enable drop
+      const drag = document.querySelector(".dragging_subtask");
+      const afterElement = getDragAfterElementSubtask(
+        li.querySelector(".task_subtask"),
+        e.clientY
+      );
+
+      if (afterElement === null)
+        li.querySelector(".task_subtask").appendChild(drag);
+      else li.querySelector(".task_subtask").insertBefore(drag, afterElement);
     });
-    li.addEventListener("dragend", () => {
-      li.classList.remove("dragging");
+    li.addEventListener("dragstart", (e) => {
+      if (e.target.classList.contains("subtask")) {
+        e.target.classList.add("dragging_subtask");
+      } else {
+        li.classList.add("dragging");
+      }
+    });
+    li.addEventListener("dragend", (e) => {
+      if (e.target.classList.contains("subtask")) {
+        e.target.classList.remove("dragging_subtask");
+      } else {
+        li.classList.remove("dragging");
+      }
     });
     listTask.appendChild(li);
     const rest = document.querySelector(".rest");
@@ -196,3 +209,22 @@ document.addEventListener("click", (e) => {
     sideBar.style.transform = "";
   }
 });
+
+function getDragAfterElementSubtask(container, y) {
+  const draggableElements = [
+    ...container.querySelectorAll(".draggable_subtask:not(.dragging_subtask)"),
+  ];
+
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset)
+        return { offset: offset, element: child };
+      else return closest;
+    },
+    {
+      offset: Number.NEGATIVE_INFINITY,
+    }
+  ).element;
+}
