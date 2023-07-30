@@ -146,25 +146,30 @@ const taskTitleInput = document.querySelector(".form_task_title");
 const dueDateInput = document.querySelector(".form_task_dueDate");
 const timeInput = document.getElementById("timeInputForm");
 
-taskTitleInput.addEventListener("input", function () {
-  const title = taskTitleInput.value.toLowerCase();
-  const currentDate = new Date();
+taskTitleInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const title = taskTitleInput.value.toLowerCase();
+    const currentDate = new Date();
 
-  if (title.includes("by tomorrow")) {
-    const tomorrow = new Date(currentDate);
-    tomorrow.setDate(currentDate.getDate() + 1);
-    dueDateInput.value = formatDate(tomorrow);
-    timeInput.value = "00:00";
-    taskTitleInput.value = title.replace("by tomorrow", "");
-  } else if (title.includes("by")) {
-    const byIndex = title.indexOf("by");
-    const dateStr = title.substring(byIndex + 3);
-    const dateObject = parseDate(dateStr);
-    timeInput.value = `${dateObject.getHours()}:${String(
-      dateObject.getMinutes()
-    ).padStart(2, "0")}`;
-    dueDateInput.value = formatDate(dateObject);
-    taskTitleInput.value = title.replace(title.slice(title.indexOf("by")), "");
+    if (title.includes("by tomorrow")) {
+      const tomorrow = new Date(currentDate);
+      tomorrow.setDate(currentDate.getDate() + 1);
+      dueDateInput.value = formatDate(tomorrow);
+      timeInput.value = "00:00";
+      taskTitleInput.value = title.replace("by tomorrow", "");
+    } else if (title.includes("by")) {
+      const byIndex = title.indexOf("by");
+      const dateStr = title.substring(byIndex + 3);
+      const dateObject = parseDate(dateStr);
+      timeInput.value = `${dateObject.getHours()}:${String(
+        dateObject.getMinutes()
+      ).padStart(2, "0")}`;
+      dueDateInput.value = formatDate(dateObject);
+      taskTitleInput.value = title.replace(
+        title.slice(title.indexOf("by")),
+        ""
+      );
+    }
   }
 });
 
